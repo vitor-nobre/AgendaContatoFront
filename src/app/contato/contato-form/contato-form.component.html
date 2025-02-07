@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/contatos">Listar Contatos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Adicionar Contato</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+    <h2>{{ contatoId ? 'Editar' : 'Adicionar' }} Contato</h2>
+    <form [formGroup]="contatoForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input id="nome" formControlName="nome" class="form-control" />
+        <div *ngIf="contatoForm.controls['nome'].invalid && contatoForm.controls['nome'].touched" class="invalid-feedback">
+          O nome é obrigatório e não pode ter mais de 100 caracteres.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email"  class="form-control" />
+        <div *ngIf="contatoForm.controls['email'].invalid && contatoForm.controls['email'].touched" class="invalid-feedback">
+          O email é obrigatório e deve ser válido.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input id="telefone" appMascaraTelefone formControlName="telefone" maxlength="14"  class="form-control" />
+        <div *ngIf="contatoForm.controls['telefone'].invalid && contatoForm.controls['telefone'].touched" class="invalid-feedback">
+          O telefone é obrigatório e deve ter 10 dígitos.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="celular">Celular</label>
+        <input id="celular" appMascaraTelefone formControlName="celular" maxlength="15" class="form-control" />
+        <div *ngIf="contatoForm.controls['celular'].invalid && contatoForm.controls['celular'].touched" class="invalid-feedback">
+          O celular é obrigatório e deve ter 11 dígitos.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="favorito">Favorito</label>
+        <select id="favorito" formControlName="favorito" class="form-control">
+          <option value="S">Sim</option>
+          <option value="N">Não</option>
+        </select>
+      </div>
+    
+      <div class="form-group">
+        <label for="ativo">Ativo</label>
+        <select id="ativo" formControlName="ativo" class="form-control">
+          <option value="S">Sim</option>
+          <option value="N">Não</option>
+        </select>
+      </div>
+    
+      <button type="submit" class="btn btn-primary">
+        Salvar
+      </button>
+    </form>
+    
+  </div>
+  
